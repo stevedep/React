@@ -1,17 +1,48 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import { render } from "react-dom";
+import * as d3 from "d3";
+//import "babel-polyfill";
+import "@reach/tabs/styles.css";
+import Playground from "@agney/playground";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+const App = () => {
+    const snippet = {
+        markup: `
+<svg class="start" width=200px height=50px>
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+</svg>`,
+        css: `div { color: red }`,
+        javascript: `import * as d3 from "d3";
+function createWhiteCanvas(ref) {
+
+    let whiteCanvas = ref.append("rect")
+        .attr("width", '100%')
+        .attr("height", '100%')
+        //.attr("height", (d) => d.data.AnyHighlights == 1 ? scaleHeight(height,d.data.treeHeightLines, 0.6) : scaleHeight(height,d.data.treeHeightLines, 0.3))
+        .attr('class', 'subVizGroup-stacked-canvas')        //.attr('rx', 1)
+        .attr('fill', 'green')
+        .attr('stroke', '#d8d8d8')
+
+}
+
+createWhiteCanvas(
+d3
+  .select(".start"))  // select the elements that have the class
+
+    `,
+    };
+    return (
+        <div style={{ width: "80%", margin: "0 auto" }}>
+            <Playground
+                initialSnippet={snippet}
+                defaultEditorTab="javascript"
+                defaultResultTab="result"
+                mode="dark"
+                transformJs
+            />
+        </div>
+    );
+};
+
+const rootEl = document.getElementById("root");
+render(<App />, rootEl);
