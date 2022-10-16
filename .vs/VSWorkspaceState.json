@@ -1,7 +1,9 @@
 {
   "ExpandedNodes": [
     "",
+    "\\build",
     "\\src"
   ],
+  "SelectedNode": "\\build\\favicon.ico",
   "PreviewInSolutionExplorer": false
 }

@@ -1,48 +1,22 @@
 import React from "react";
 import { render } from "react-dom";
-import * as d3 from "d3";
-//import "babel-polyfill";
-import "@reach/tabs/styles.css";
-import Playground from "@agney/playground";
+import HomeApp from "./Home";
+import AxisApp from "./Axis";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-const App = () => {
-    const snippet = {
-        markup: `
-<svg class="start" width=200px height=50px>
-
-</svg>`,
-        css: `div { color: red }`,
-        javascript: `import * as d3 from "d3";
-function createWhiteCanvas(ref) {
-
-    let whiteCanvas = ref.append("rect")
-        .attr("width", '100%')
-        .attr("height", '100%')
-        //.attr("height", (d) => d.data.AnyHighlights == 1 ? scaleHeight(height,d.data.treeHeightLines, 0.6) : scaleHeight(height,d.data.treeHeightLines, 0.3))
-        .attr('class', 'subVizGroup-stacked-canvas')        //.attr('rx', 1)
-        .attr('fill', 'green')
-        .attr('stroke', '#d8d8d8')
-
-}
-
-createWhiteCanvas(
-d3
-  .select(".start"))  // select the elements that have the class
-
-    `,
-    };
+export default function App() {
     return (
-        <div style={{ width: "80%", margin: "0 auto" }}>
-            <Playground
-                initialSnippet={snippet}
-                defaultEditorTab="javascript"
-                defaultResultTab="result"
-                mode="dark"
-                transformJs
-            />
-        </div>
+        <BrowserRouter>
+            <Routes>
+                <Route>
+                    <Route path="blogs" element={<HomeApp />} />
+                    <Route path="axis" element={<AxisApp />} />
+                    
+                </Route>
+            </Routes>
+        </BrowserRouter>
     );
-};
+}
 
 const rootEl = document.getElementById("root");
 render(<App />, rootEl);
